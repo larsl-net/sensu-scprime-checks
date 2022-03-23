@@ -88,16 +88,13 @@ func executeCheck(event *types.Event) (int, error) {
 		return sensu.CheckStateCritical, nil
 	}
 	
-	if walletState == true {
+	if walletState {
 		fmt.Printf("%s OK: Wallet unlocked\n", plugin.PluginConfig.Name)
 		return sensu.CheckStateOK, nil
 	} else {
 		fmt.Printf("%s WARNING: Wallet not unlocked\n", plugin.PluginConfig.Name)
 		return sensu.CheckStateWarning, nil
 	}
-
-	fmt.Printf("%s CRITICAL: Unkown error\n", plugin.PluginConfig.Name)
-	return sensu.CheckStateCritical, nil
 }
 
 func httpScPrime (endpoint string) ([]byte, error) {
